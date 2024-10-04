@@ -1,4 +1,3 @@
-<!-- Lauma Gailite 221RDB389 2. grupa -->
 <!DOCTYPE html>
 <head>
 <?php
@@ -8,14 +7,13 @@
         $parole = $_POST['password'];
         $epasts = $_POST['email'];
         $info = "Vards: $vards, Parole: $parole, E-pasts: $epasts\n";
-        $fails = fopen("3uzd_Gailite.txt", "a"); // atversana
+        $fails = fopen("3uzd_Gailite.txt", "a");
 
-        if ($fails) { // faila ierakstu pievienosana
+        if ($fails) {
             fwrite($fails, $info); 
             fclose($fails); 
             }
         }
-    //faila nolasisana, saglabasana
     if (file_exists("3uzd_Gailite.txt")) {$sDati = file("3uzd_Gailite.txt");}
 ?>
 
@@ -42,8 +40,6 @@
 </head>
 <body>
 <form method="POST" action=""> 
-    <!-- ja katram no laukiem rakstitu gala "required",
-    tad bez pareizas ievades nevaretu iesniegt datus, soreiz so opciju neizmantoju.  -->
     <input type="text" name="username" placeholder="Vards">
     <input type="password" name="password" placeholder="Parole">
     <input type="email" name="email" placeholder="E-pasts"><br><br>
@@ -61,16 +57,16 @@
     <tbody>
         <?php foreach ($sDati as $rinda): ?>
             <?php
-            list($vards, $parole, $epasts) = explode(", ", $rinda); // aiz epasta tiek atdalita rinda un parnesta jaunaa
+            list($vards, $parole, $epasts) = explode(", ", $rinda);
             $vards = str_replace("Vārds: ", "", $vards);
             $parole = str_replace("Parole: ", "", $parole);
             $epasts = str_replace("E-pasts: ", "", $epasts);?>
-            <tr> <!--Nepieciesams, lai teksts paraditos tabulaa index failaa: -->
+            <tr>
                 <td><?php echo $vards; ?></td>
                 <td><?php echo $parole; ?></td>
                 <td><?php echo $epasts; ?></td>
             </tr>
-        <?php endforeach; ?> <!--bez si netiek noslegts cikls un lapa neiet -->
+        <?php endforeach; ?>
     </tbody>
 </table>
 
